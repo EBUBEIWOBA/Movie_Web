@@ -1,0 +1,507 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  background-color: #121212;
+  /* Dark mode */
+  color: white;
+  padding-top: 110px;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.navbar {
+  position: fixed;
+  /* ✅ Make navbar fixed */
+  top: 0;
+  /* ✅ Stick it to the top */
+  left: 0;
+  width: 100%;
+  /* ✅ Full width */
+  z-index: 1000;
+  /* ✅ Stay on top of all content */
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #333;
+  background-color: #121212;
+  box-sizing: border-box;
+  border: none;
+}
+
+/* /App.css or index.css */
+.app.light {
+  background-color: #f9f9f9;
+  color: white;
+}
+
+.app.dark {
+  background-color: #121212;
+  color: #f9f9f9;
+}
+
+/* Toggle Switch Styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:checked+.slider:before {
+  transform: translateX(26px);
+}
+
+.movieapp,
+.nav-links-container,
+.search,
+.toggle-container {
+  flex-shrink: 1;
+  /* ✅ Allows items to shrink */
+  min-width: 0;
+}
+
+/* MOVIEVERSE title and nav-links */
+.movieapp {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  white-space: nowrap;
+
+}
+
+/* Nav Buttons */
+.nav-links-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-links {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+
+}
+
+.nav-links:hover {
+  color: #fff;
+  padding: 5px;
+}
+
+/* Search Bar */
+.search {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  border-radius: 30px;
+  padding: 5px 15px;
+}
+
+.search input {
+  border: none;
+  background: none;
+  color: white;
+  padding: 5px 13px;
+  width: 150px;
+  outline: none;
+}
+
+.search input::placeholder {
+  color: #ccc;
+}
+
+.search-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Hamburger */
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Dropdown styles */
+.mobile-menu {
+  display: flex;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  padding-top: 3.7rem;
+  background-color: #1e1e1e;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  z-index: 900; /* 🔼 Higher than movie cards */
+
+}
+
+.mobile-menu button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+}
+
+.mobile-menu button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px; /* Adjust based on navbar height */
+  }
+  .nav-links-container {
+    display: none;
+  }
+  .movieapp{
+    font-size: 15px;
+    margin-left: -1.5rem;
+  }
+
+  .menu-icon {
+    display: block;
+    padding-left: 1rem;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+
+}
+
+
+/* ✅ Mobile Responsive Styling */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    /* ✅ Allows horizontal scroll if needed */
+  }
+
+  .movieapp {
+    margin-bottom: 1rem;
+  }
+
+  .nav-links-container {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+
+  /* .search {
+    width: 100%;
+    margin: 0;
+  } */
+
+  .search input {
+    width: 120px;
+    /* ✅ Shrink the input */
+  }
+
+  .toggle-container {
+    margin: auto;
+
+  }
+}
+
+.spinner,
+.error {
+  text-align: center;
+  padding: 15rem;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    position: absolute;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    position: absolute;
+  }
+}
+
+.error p {
+  color: red;
+  margin-top: 1rem;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 30px 20px 20px 20px;
+  /* ✅ Top padding to push content below navbar */
+}
+
+/* Movie Card */
+.movie-card {
+  display: grid;
+  flex-direction: column;
+  overflow: hidden;
+  background: #222;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  width: 100%; /* ✅ Full width of the grid cell */
+  box-sizing: border-box; /* ✅ Prevents overflow */
+  margin-bottom: 0.6rem;
+  position: relative; /* Ensures stacking works properly */
+  z-index: 1; /* 🔽 Lower than dropdown */
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.details-btn {
+  background: #0852dd;
+  border: none;
+  padding: 10px;
+  color: white;
+  font-size: 15px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.details-btn:hover {
+  background: #e67e22;
+}
+
+/* Movie Details Modal */
+.movie-details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.movie-details-content {
+  width: 250px;
+  position: relative;
+  max-height: 100vh;
+  box-sizing: border-box;
+  /* ✅ Ensures padding doesn’t affect scrollbar position */
+
+}
+
+.movie-details-content img {
+  width: 100%;
+  border-radius: 10px;
+  height: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  border: none;
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.close-btn:hover {
+  background: darkred;
+}
+
+.genre-select {
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+
+.fav-btn {
+  border: none;
+  background-color: transparent;
+  font-size: 17px;
+  cursor: pointer;
+  align-items: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif3;
+  color: #e67e22;
+}
+
+.fav-btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+
+}
+
+.remove-btn {
+  background-color: transparent;
+  border: none;
+  color: #a93226;
+}
+
+.remove-btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+  color: #e41704;
+
+}
+
+.genre {
+  width: 100%;
+  margin-top: -1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.footer {
+  padding: 2rem;
+  text-align: center;
+  background: #222;
+  color: white;
+  margin-top: 2rem;
+}
+
+.footer.dark {
+  background: #111;
+  color: #fff;
+}
+
+.footer.light {
+  background: #f8f8f8;
+  color: #222;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.footer-brand h2 {
+  font-size: 1.8rem;
+}
+
+.footer-links {
+  border: none;
+  background-color: #0c62d3;
+  border-radius: 30px;
+  padding: 10px;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+.footer-links:hover {
+  transform: scale(1.05);
+  background: #e67e22;
+}
+
+.footer-social {
+  margin: 0 60px;
+  font-size: 2rem;
+  color: inherit;
+}
+
+.footer-bottom {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
