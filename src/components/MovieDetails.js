@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 const API_URL = "http://www.omdbapi.com/";
-const API_KEY = "c36a3609";
+const API_KEY = process.env.REACT_APP_API_KEY;
 const YOUTUBE_SEARCH_API = "https://www.googleapis.com/youtube/v3/search";
-const YOUTUBE_API_KEY = "AIzaSyBX3n_XOFNLeuMQr08kCyXJm8fpKxCs9O4"; // Replace with your YouTube Data API key
+const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
 const MovieDetails = ({ movieId, closeDetails }) => {
   const [movie, setMovie] = useState(null);

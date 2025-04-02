@@ -4,16 +4,18 @@ import MovieCard from "./MovieCard";
 const Favorite = ({ openDetails }) => {
   const [favorites, setFavorites] = useState([]);
 
+  // Load favorites from localStorage when component mounts
   useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const uniqueFavorites = Array.from(new Map(savedFavorites.map(movie => [movie.imdbID, movie])).values());
-    setFavorites(uniqueFavorites);
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(storedFavorites);
   }, []);
 
-  const removeFavorite = (imdbID) => {
-    const updatedFavorites = favorites.filter(movie => movie.imdbID !== imdbID);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  // Remove a movie from favorites and update localStorage immediately
+  const removeFavorite = (movieId) => {
+    console.log("Removing movie with ID:", movieId); // Debugging
+    const updatedFavorites = favorites.filter((movie) => movie.imdbID !== movieId);
     setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
   return (

@@ -9,8 +9,10 @@ import Favorite from "./components/Favorite";
 import Footer from "./components/Footer";
 import { FaExclamationTriangle } from 'react-icons/fa';
 
+
 const API_URL = 'https://www.omdbapi.com/';
-const API_KEY = 'c36a3609';
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 
 const App = () => {
   const [query, setQuery] = useState("Avengers");

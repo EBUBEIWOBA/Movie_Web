@@ -9,8 +9,8 @@ const Genres = ({openDetails}) => {
   const [genre, setGenre] = useState("Action");
 
   useEffect(() => {
-    fetch(`${API_URL}?s=${genre}&apikey=${API_KEY}`)
-      .then((res) => res.json())
+    fetch(`${API_URL}?s=${genre}&type=movie&apikey=${API_KEY}`)
+    .then((res) => res.json())
       .then((data) =>
       { if (data.Response === "True") {
         setMovies(data.Search);
@@ -24,19 +24,19 @@ const Genres = ({openDetails}) => {
   return (
     <div>
       <div className="genre">
-      <h2>Select Genre</h2>
+      <h2>SELECT CATEGORY</h2>
       <select 
         onChange={(e) => setGenre(e.target.value)} 
         value={genre} 
         className="genre-select"
       >
-        <option value="Action">Action</option>
-        <option value="Comedy">Comedy</option>
-        <option value="Drama">Drama</option>
-        <option value="Horror">Horror</option>
-        <option value="Sci-Fi">Sci-Fi</option>
-        <option value="Adventure">Adventure</option>
-        <option value="Animation">Animation</option>
+        <option className= "genre-option" value="Action">Action</option>
+        <option className= "genre-option" value="Comedy">Comedy</option>
+        <option className= "genre-option" value="Drama">Drama</option>
+        <option className= "genre-option" value="Horror">Horror</option>
+        <option className= "genre-option" value="Sci-Fi">Sci-Fi</option>
+        <option className= "genre-option" value="Adventure">Adventure</option>
+        <option className= "genre-option" value="Animation">Animation</option>
       </select>
       </div>
     
